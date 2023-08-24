@@ -13,10 +13,24 @@ public class Skin : MonoBehaviour
         }
     }
 
-    public static Material CloneMaterial(Material baseMaterial, Color color)
+    private static Material CloneMaterial(Material baseMaterial, Color color)
     {
         Material newMaterial = new Material(baseMaterial);
         newMaterial.color = color;
         return newMaterial;
+    }
+
+    public static void PrepareMaterial(string colorString, Material baseMaterial, out Material newMaterial)
+    {
+        newMaterial = baseMaterial;
+
+        if (ColorUtility.TryParseHtmlString(colorString, out Color color))
+        {
+            newMaterial = CloneMaterial(newMaterial, color);
+        }
+        else
+        {
+            Debug.LogWarning($"Failed to parse color string {colorString}");
+        }
     }
 }

@@ -37,7 +37,6 @@ public class SettingsManager : Manager<SettingsManager>
             _playerColor = value;
             PlayerColorString = "#" + ColorUtility.ToHtmlStringRGB(value);
             PlayerPrefs.SetString(PARAM_PLAYER_COLOR, PlayerColorString);
-            Debug.LogFormat("Saved new color {0}", LoadPlayerColor());
         }
     }
 }

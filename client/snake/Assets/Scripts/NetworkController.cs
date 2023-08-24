@@ -7,11 +7,11 @@ public class NetworkController : MonoBehaviour
     [SerializeField] private Snake _snake;
     private PlayerNO _player;
 
-    public void Init(PlayerNO player, Material material)
+    public void Init(PlayerNO player)
     {
         _player = player;
         _player.OnChange += OnChange;
-        _snake.Init(_player.d, material);
+        _snake.Init(_player.d, player.c);
     }
 
     private void OnChange(List<DataChange> changes)

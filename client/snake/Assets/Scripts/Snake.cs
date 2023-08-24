@@ -5,15 +5,17 @@ public class Snake : MonoBehaviour
     [SerializeField] private Tail _tailPrefab;
     [SerializeField] private Transform _head;
     [SerializeField] private float _speed = 2f;
+    [SerializeField] private Material _baseSnakeMaterial;
 
     private Tail _tail;
 
-    public void Init(int segmentsCount, Material material)
+    public void Init(int segmentsCount, string colorString)
     {
+        Skin.PrepareMaterial(colorString, _baseSnakeMaterial, out Material material);
+        GetComponent<Skin>().UpdateMaterial(material);
+
         _tail = Instantiate(_tailPrefab, transform.position, transform.rotation);
         _tail.Init(_head, segmentsCount, material);
-
-        GetComponent<Skin>().UpdateMaterial(material);
     }
 
     public void SetSegmentsCount(int segmentsCount)
