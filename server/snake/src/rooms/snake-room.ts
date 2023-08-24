@@ -8,6 +8,7 @@ export class PlayerNO extends Schema {
     @type("number") x = Math.floor(Math.random() * MAP_WIDTH - MAP_WIDTH / 2);
     @type("number") z = Math.floor(Math.random() * MAP_HEIGHT - MAP_HEIGHT / 2);
     @type("uint8") d = 2;
+    @type("string") c = "FFFFFF";
 }
 
 export class StateNO extends Schema {
@@ -16,6 +17,7 @@ export class StateNO extends Schema {
 
     createPlayer(sessionId: string, data: any) {
         const player = new PlayerNO();
+        player.c = data.c;
         this.players.set(sessionId, player);
     }
 

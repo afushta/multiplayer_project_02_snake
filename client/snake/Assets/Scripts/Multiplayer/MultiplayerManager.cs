@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Colyseus;
+using UnityEditor;
+using UnityEngine;
 
 public class MultiplayerManager : ColyseusManager<MultiplayerManager>
 {
@@ -27,7 +29,9 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
 
     private async void Connection()
     {
-        Dictionary<string, object> options = new() {};
+        Dictionary<string, object> options = new() {
+            { "c", SettingsManager.Instance.PlayerColorString },
+        };
 
         _room = await Instance.client.JoinOrCreate<StateNO>(ROOM_NAME, options);
         _room.OnStateChange += OnChange;

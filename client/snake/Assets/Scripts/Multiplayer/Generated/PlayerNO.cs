@@ -16,5 +16,8 @@ public partial class PlayerNO : Schema {
 
 	[Type(2, "uint8")]
 	public byte d = default(byte);
+
+	[Type(3, "string")]
+	public string c = default(string);
 }
 

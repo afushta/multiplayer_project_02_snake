@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8092102870332836308}
   - component: {fileID: 2117713519955816113}
+  - component: {fileID: 7504872798119441848}
   - component: {fileID: 4258112095664887315}
   m_Layer: 0
   m_Name: Tail
@@ -49,6 +50,21 @@ MonoBehaviour:
   _segmentPrefab: {fileID: 2111181747465603616, guid: 9ee9275401a88e74ba48c761393704ad,
     type: 3}
   _segmentsDistance: 1
+--- !u!114 &7504872798119441848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9010843811509121303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef2f727118c8a840804c7010a6d41a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshRenderers:
+  - {fileID: 3469546358068973365}
+  _baseMaterial: {fileID: 2100000, guid: 45863e63575aac94da2d2541ca6f6378, type: 2}
 --- !u!65 &4258112095664887315
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -138,6 +154,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f36cd16b6c365f4cad37fb84deec7ec, type: 3}
+--- !u!23 &3469546358068973365 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4558906730386509825, guid: 6f36cd16b6c365f4cad37fb84deec7ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 8114866937200058570}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8581456263641188129 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6f36cd16b6c365f4cad37fb84deec7ec,

@@ -8,10 +8,12 @@ public class Snake : MonoBehaviour
 
     private Tail _tail;
 
-    public void Init(int segmentsCount)
+    public void Init(int segmentsCount, Material material)
     {
         _tail = Instantiate(_tailPrefab, transform.position, transform.rotation);
-        _tail.Init(_head, segmentsCount);
+        _tail.Init(_head, segmentsCount, material);
+
+        GetComponent<Skin>().UpdateMaterial(material);
     }
 
     public void SetSegmentsCount(int segmentsCount)

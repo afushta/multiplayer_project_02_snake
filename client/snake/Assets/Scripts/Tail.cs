@@ -9,10 +9,14 @@ public class Tail : MonoBehaviour
     private Transform _head;
     private List<Transform> _segments;
     private List<MovementSnapshot> _movementHistory;
+    private Material _skinMaterial;
 
-    public void Init(Transform head, int segmentsCount)
+    public void Init(Transform head, int segmentsCount, Material material)
     {
         _head = head;
+        _skinMaterial = material;
+        GetComponent<Skin>().UpdateMaterial(material);
+
         _segments = new List<Transform> { transform };
         _movementHistory = new List<MovementSnapshot>
         {
@@ -54,6 +58,7 @@ public class Tail : MonoBehaviour
     private void AddSegment()
     {
         Transform segment = Instantiate(_segmentPrefab, transform.position, transform.rotation);
+        segment.GetComponent<Skin>().UpdateMaterial(_skinMaterial);
         _segments.Insert(0, segment);
         _movementHistory.Add(new MovementSnapshot(transform));
     }
