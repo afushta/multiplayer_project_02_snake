@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using Colyseus;
-using UnityEditor;
 using UnityEngine;
+
+
+public enum ConnectionMode { Create, Join, JoinOrCreate }
+
 
 public class MultiplayerManager : ColyseusManager<MultiplayerManager>
 {
@@ -17,24 +20,36 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
         InitializeClient();
     }
 
-    public void Connect()
+    private Dictionary<string, object> GetOptions()
     {
-        Connection();
+        return new() {
+            { "c", SettingsManager.Instance.PlayerColorString },
+        };
+    }
+
+    public async void JoinOrCreateRoom()
+    {
+        _room = await Instance.client.JoinOrCreate<StateNO>(ROOM_NAME, GetOptions());
+        _room.OnStateChange += OnChange;
+    }
+
+    public async void JoinRoom(string roomId)
+    {
+        _room = await Instance.client.Join<StateNO>(roomId, GetOptions());
+        _room.OnStateChange += OnChange;
+    }
+
+    public async void CreateRoom(string roomName)
+    {
+        var options = GetOptions();
+        options.Add("roomName", roomName);
+        _room = await Instance.client.Create<StateNO>(ROOM_NAME, options);
+        _room.OnStateChange += OnChange;
     }
 
     public void LeaveRoom()
     {
         _room?.Leave();
-    }
-
-    private async void Connection()
-    {
-        Dictionary<string, object> options = new() {
-            { "c", SettingsManager.Instance.PlayerColorString },
-        };
-
-        _room = await Instance.client.JoinOrCreate<StateNO>(ROOM_NAME, options);
-        _room.OnStateChange += OnChange;
     }
 
     private void OnChange(StateNO state, bool isFirstState)
@@ -52,6 +67,14 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
 
         state.players.OnAdd += GameManager.Instance.CreateEnemy;
         state.players.OnRemove += GameManager.Instance.RemoveEnemy;
+    }
+
+    public async IAsyncEnumerable<ColyseusRoomAvailable> GetAvailableRooms()
+    {
+        foreach (ColyseusRoomAvailable room in await Instance.client.GetAvailableRooms())
+        {
+            yield return room;
+        }
     }
 
     protected override void OnApplicationQuit()
