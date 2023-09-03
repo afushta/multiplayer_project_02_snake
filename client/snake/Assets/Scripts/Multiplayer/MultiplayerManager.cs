@@ -23,7 +23,8 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
     private Dictionary<string, object> GetOptions()
     {
         return new() {
-            { "c", SettingsManager.Instance.PlayerColorString },
+            { "name", SettingsManager.Instance.PlayerName },
+            { "color", SettingsManager.Instance.PlayerColorString },
         };
     }
 
@@ -67,6 +68,10 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
 
         state.players.OnAdd += GameManager.Instance.CreateEnemy;
         state.players.OnRemove += GameManager.Instance.RemoveEnemy;
+
+        state.apples.ForEach(GameManager.Instance.CreateApple);
+        state.apples.OnAdd += GameManager.Instance.CreateApple;
+        state.apples.OnRemove += GameManager.Instance.RemoveApple;
     }
 
     public async IAsyncEnumerable<ColyseusRoomAvailable> GetAvailableRooms()
@@ -83,7 +88,17 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
         LeaveRoom();
     }
 
+    public new void SendMessage(string key)
+    {
+        _room.Send(key);
+    }
+
     public void SendMessage(string key, Dictionary<string, object> data)
+    {
+        _room.Send(key, data);
+    }
+
+    public void SendMessage(string key, string data)
     {
         _room.Send(key, data);
     }

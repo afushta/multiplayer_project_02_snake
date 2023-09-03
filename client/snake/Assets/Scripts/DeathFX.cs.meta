@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 56ddec2cbb9e75547b7778df94f60d31
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _deathParticlesPrefab: {fileID: 1842031063863612882, guid: f18bc8e86746677419b9e0340a6aa844,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

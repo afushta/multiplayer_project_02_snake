@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tail : MonoBehaviour
+public class SnakeTail : MonoBehaviour
 {
     [SerializeField] private Transform _segmentPrefab;
     [SerializeField] private float _segmentsDistance = 1f;
@@ -15,7 +16,7 @@ public class Tail : MonoBehaviour
     {
         _head = head;
         _skinMaterial = material;
-        GetComponent<Skin>().UpdateMaterial(material);
+        GetComponent<SnakeSkin>().UpdateMaterial(material);
 
         _segments = new List<Transform> { transform };
         _movementHistory = new List<MovementSnapshot>
@@ -58,7 +59,7 @@ public class Tail : MonoBehaviour
     private void AddSegment()
     {
         Transform segment = Instantiate(_segmentPrefab, transform.position, transform.rotation);
-        segment.GetComponent<Skin>().UpdateMaterial(_skinMaterial);
+        segment.GetComponent<SnakeSkin>().UpdateMaterial(_skinMaterial);
         _segments.Insert(0, segment);
         _movementHistory.Add(new MovementSnapshot(transform));
     }
@@ -96,6 +97,22 @@ public class Tail : MonoBehaviour
             _segments[i].position = Vector3.Lerp(from.position, to.position, percent);
             _segments[i].rotation = Quaternion.Lerp(from.rotation, to.rotation, percent);
         }
+    }
+
+    public DestroyDataPosition[] GetSegmentsPositions()
+    {
+        DestroyDataPosition[] positions = new DestroyDataPosition[_segments.Count];
+
+        for (int i = 0; i < _segments.Count; i++)
+        {
+            positions[i] = new()
+            {
+                x = Mathf.RoundToInt(_segments[i].position.x * 100f) / 100f,
+                z = Mathf.RoundToInt(_segments[i].position.z * 100f) / 100f,
+            };
+        }
+
+        return positions;
     }
 }
 

@@ -6,12 +6,14 @@ public class NetworkController : MonoBehaviour
 {
     [SerializeField] private Snake _snake;
     private PlayerNO _player;
+    private string _playerId;
 
-    public void Init(PlayerNO player)
+    public void Init(PlayerNO player, string playerId, bool isPlayer = false)
     {
         _player = player;
+        _playerId = playerId;
         _player.OnChange += OnChange;
-        _snake.Init(_player.d, player.c);
+        _snake.Init(_player.size, player.color, playerId, isPlayer);
     }
 
     private void OnChange(List<DataChange> changes)
@@ -30,11 +32,15 @@ public class NetworkController : MonoBehaviour
                 case "z":
                     position.z = (float)change.Value;
                     break;
-                case "d":
+                case "size":
                     _snake.SetSegmentsCount((byte)change.Value);
                     break;
+                case "score":
+                    int score = (ushort)change.Value;
+                    Leaderboard.Instance.UpdateScore(_playerId, score);
+                    break;
                 default:
-                    Debug.LogWarning($"Change of field {change.Field} is not supported");
+                    Debug.LogWarning($"Change of field {change.Field} is not supported in PlayerNO");
                     break;
             }
         }

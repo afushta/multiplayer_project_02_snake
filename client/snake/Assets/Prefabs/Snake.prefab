@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 659475896083393759}
-  - component: {fileID: 3299679457907374264}
+  - component: {fileID: 5925310830152695592}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -31,9 +31,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6697220523833550990}
+  - {fileID: 8327805439399260585}
   m_Father: {fileID: 4408681532547919897}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3299679457907374264
+--- !u!65 &5925310830152695592
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,6 +67,7 @@ GameObject:
   - component: {fileID: 1253612987360627778}
   - component: {fileID: 3517610679220376076}
   - component: {fileID: 7667139925545031359}
+  - component: {fileID: -9121533777079273362}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -104,8 +106,10 @@ MonoBehaviour:
   _tailPrefab: {fileID: 2117713519955816113, guid: 6ca967d2f69038c40bc55bb97f8af605,
     type: 3}
   _head: {fileID: 659475896083393759}
+  _mouth: {fileID: 5293233838027616313}
   _speed: 9
   _baseSnakeMaterial: {fileID: 2100000, guid: 45863e63575aac94da2d2541ca6f6378, type: 2}
+  _playerLayer: 6
 --- !u!114 &3517610679220376076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +142,69 @@ MonoBehaviour:
   - {fileID: 6312888807796980778}
   - {fileID: 3403856641495842404}
   - {fileID: 1043142320449215456}
+--- !u!114 &-9121533777079273362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7635850421776714485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ddec2cbb9e75547b7778df94f60d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathParticlesPrefab: {fileID: 1842031063863612882, guid: f18bc8e86746677419b9e0340a6aa844,
+    type: 3}
+--- !u!1 &9035748741540142687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8327805439399260585}
+  - component: {fileID: 5293233838027616313}
+  m_Layer: 0
+  m_Name: Mouth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8327805439399260585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035748741540142687}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 659475896083393759}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5293233838027616313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035748741540142687}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a643f9749caeb548b1cb8026f4acb52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 0.5
+  _angleEpsilon: 5
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 257
 --- !u!1001 &6592135056451473253
 PrefabInstance:
   m_ObjectHideFlags: 0

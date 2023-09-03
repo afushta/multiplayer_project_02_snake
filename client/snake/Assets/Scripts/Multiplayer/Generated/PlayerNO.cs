@@ -7,17 +7,17 @@
 
 using Colyseus.Schema;
 
-public partial class PlayerNO : Schema {
-	[Type(0, "number")]
-	public float x = default(float);
+public partial class PlayerNO : Vector2NO {
+	[Type(2, "string")]
+	public string name = default(string);
 
-	[Type(1, "number")]
-	public float z = default(float);
+	[Type(3, "uint8")]
+	public byte size = default(byte);
 
-	[Type(2, "uint8")]
-	public byte d = default(byte);
+	[Type(4, "string")]
+	public string color = default(string);
 
-	[Type(3, "string")]
-	public string c = default(string);
+	[Type(5, "uint16")]
+	public ushort score = default(ushort);
 }
 

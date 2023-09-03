@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class CameraController : MonoBehaviour
 {
     private Transform _cameraTransform;
@@ -12,7 +13,7 @@ public class CameraController : MonoBehaviour
         _cameraTransform.localPosition = offsetY * Vector3.up;
     }
 
-    private void OnDestroy()
+    public void Detach()
     {
         if (Camera.main) _cameraTransform.parent = null;
     }

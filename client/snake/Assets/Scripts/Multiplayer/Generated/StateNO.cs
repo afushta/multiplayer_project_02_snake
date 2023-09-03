@@ -10,5 +10,8 @@ using Colyseus.Schema;
 public partial class StateNO : Schema {
 	[Type(0, "map", typeof(MapSchema<PlayerNO>))]
 	public MapSchema<PlayerNO> players = new MapSchema<PlayerNO>();
+
+	[Type(1, "map", typeof(MapSchema<AppleNO>))]
+	public MapSchema<AppleNO> apples = new MapSchema<AppleNO>();
 }
 

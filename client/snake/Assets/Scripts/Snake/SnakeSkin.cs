@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skin : MonoBehaviour
+public class SnakeSkin : MonoBehaviour
 {
     [SerializeField] private List<MeshRenderer> _meshRenderers;
 
+    public Material Material { get; private set; }
+
     public void UpdateMaterial(Material material)
     {
+        Material = material;
         foreach (MeshRenderer meshRenderer in _meshRenderers)
         {
-            meshRenderer.material = material;
+            meshRenderer.sharedMaterial = material;
         }
     }
 
